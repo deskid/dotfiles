@@ -2,7 +2,7 @@
 echo "------------------------------------------------------------"
 echo "Adjust studio.vmoptions"
 echo "------------------------------------------------------------"
-curl https://raw.githubusercontent.com/deskid/dotfiles/master/studio.vmoptions -o /Applications/Android\ Studio.app/Contents/bin/studio.vmoptions
+curl https://raw.githubusercontent.com/deskid/dotfiles/master/dev/android/studio.vmoptions -o /Applications/Android\ Studio.app/Contents/bin/studio.vmoptions
 tail -n 5 /Applications/Android\ Studio.app/Contents/bin/studio.vmoptions
 echo "\n------------------------------------------------------------"
 echo "\n\n"
