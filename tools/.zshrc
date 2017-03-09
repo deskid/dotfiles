@@ -1,4 +1,4 @@
-export ZSH=/Users/zhou/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 export UPDATE_ZSH_DAYS=1
@@ -10,11 +10,10 @@ plugins=(git osx autojump)
 
 
 # Android dev
-export PATH=${PATH}:/Users/zhou/Library/Android/sdk/tools:/Users/zhou/Library/Android/sdk/platform-tools
-export PATH=${PATH}:/Users/zhou/Library/Android/sdk/build-tools/24.0.2
-export PATH=${PATH}:/Applications/Android\ Studio.app/Contents/gradle/gradle-3.2/bin 
-export ANDROID_NDK_ROOT=/Users/zhou/Library/Android/sdk/ndk-bundle
-export ANDROID_HOME=/Users/zhou/Library/Android/sdk
+export PATH=${PATH}:$HOME/Library/Android/sdk/tools:$HOME/Library/Android/sdk/platform-tools
+export PATH=${PATH}:$HOME/Library/Android/sdk/build-tools/24.0.2
+export ANDROID_NDK_ROOT=$HOME/Library/Android/sdk/ndk-bundle
+export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_NDK_ROOT
 
 # JDK 
@@ -22,10 +21,10 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home
 export PATH=${PATH}:${JAVA_HOME}/bin
 
 # Apache
-export PATH=${PATH}:/Users/zhou/libs/apache-maven-3.3.9/bin
+export PATH=${PATH}:$HOME/libs/apache-maven-3.3.9/bin
 
 # User tools
-export PATH=${PATH}:/Users/zhou/libs
+export PATH=${PATH}:$HOME/libs
 export PATH=${PATH}:/usr/local/bin
 
 # homebrew mirror
@@ -54,7 +53,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # For a full list of active aliases, run `alias`.
 # zsh
 alias zshconfig="vim ~/.zshrc"
-alias zshreload="source /Users/zhou/.zshrc"
+alias zshreload="source $HOME/.zshrc"
 
 # http://{yourIP}:8000
 alias shttp="python -m SimpleHTTPServer 8000"
@@ -81,7 +80,7 @@ function free_m(){
 alias free="free_m"
 
 
-export NVM_DIR="/Users/zhou/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH=${PATH}:/Applications/Android\ Studio.app/Contents/gradle/gradle-3.2/bin
