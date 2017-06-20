@@ -1,9 +1,12 @@
 #!/bin/sh
+ANDROID_STUDIO_PREFERENCES_PATH=`find ${HOME}/Library/Preferences -name 'AndroidStudio*' -depth 1 | sort -r | head -1`
+VMOPTIONS_PATH="${ANDROID_STUDIO_PREFERENCES_PATH}/studio.vmoptions"
+
 echo "------------------------------------------------------------"
 echo "Adjust studio.vmoptions"
 echo "------------------------------------------------------------"
-curl https://raw.githubusercontent.com/deskid/dotfiles/master/dev/android/studio.vmoptions -o /Applications/Android\ Studio.app/Contents/bin/studio.vmoptions
-tail -n 5 /Applications/Android\ Studio.app/Contents/bin/studio.vmoptions
+curl https://raw.githubusercontent.com/deskid/dotfiles/master/dev/android/studio.vmoptions -o $VMOPTIONS_PATH
+tail -n 5 $VMOPTIONS_PATH
 echo "\n------------------------------------------------------------"
 echo "\n\n"
 
@@ -17,7 +20,17 @@ echo 'export PATH=${PATH}:/Applications/Android\ Studio.app/Contents/gradle/'"$a
 tail -n 1 ~/.zshrc
 gradle -v
 echo "------------------------------------------------------------"
-
 echo "\n\n"
+
+echo "------------------------------------------------------------"
+echo "Remove author from new files"
+echo "------------------------------------------------------------"
+
+ANDROID_STUDIO_PREFERENCES_PATH=`find ${HOME}/Library/Preferences -name 'AndroidStudio*' -depth 1 | sort -r | head -1`
+FILE_HEADER_PATH="${ANDROID_STUDIO_PREFERENCES_PATH}/fileTemplates/includes/File Header.java"
+echo $ANDROID_STUDIO_PREFERENCES_PATH
+if [ -f "$FILE_HEADER_PATH" ]; then
+	cat /dev/null > $FILE_HEADER_PATH
+fi
 
 echo "done"
