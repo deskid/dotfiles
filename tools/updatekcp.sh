@@ -2,8 +2,7 @@
 
 # 自动检查最新的kcp客户端
 # 自动下载到$HOME/.kcptun 目录
-# 因为需要访问github，Amazon等网址，所以添加了翻墙
-# todo 增加配置文件
+# 因为需要访问github，Amazon等网址，所以必须添加翻墙代理才能更新
 
 DOWNLOAD_DIR=$HOME/Downloads
 KCPTUN_INSTALL_DIR=$HOME/.kcptun # kcptun 默认安装目录
@@ -241,7 +240,7 @@ check_update() {
 
 	local shell_path=$0
 	[ -d "$KCPTUN_INSTALL_DIR" ] || mkdir -p "$KCPTUN_INSTALL_DIR"
-	
+
 	get_installed_version
 	get_kcptun_version_info
 

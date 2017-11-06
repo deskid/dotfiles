@@ -8,7 +8,7 @@ from jinja2 import Template
 DATE = str(date.today())
 FILE_NAME = DATE + '.md'
 ROOT_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), os.pardir))
-WRITE_PATH = os.path.join('/Users/zhou/Documents/日报', FILE_NAME)
+WRITE_PATH = os.path.join('~/Documents/日报', FILE_NAME)
 
 
 def notify(title, info_text):
@@ -31,5 +31,5 @@ def render():
 
 
 render()
-notify('日报已自动生成', FILE_NAME)
-print '日报已自动生成'
+notify('日报已生成,开始工作吧', FILE_NAME)
+print '日报已生成'

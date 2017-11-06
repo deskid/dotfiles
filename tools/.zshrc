@@ -15,13 +15,11 @@ export PATH=${PATH}:$HOME/Library/Android/sdk/build-tools/24.0.2
 export ANDROID_NDK_ROOT=$HOME/Library/Android/sdk/ndk-bundle
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_NDK_ROOT
+export ANDROID_HVPROTO=ddm
 
-# JDK 
+# JDK
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home
 export PATH=${PATH}:${JAVA_HOME}/bin
-
-# Apache
-export PATH=${PATH}:$HOME/libs/apache-maven-3.3.9/bin
 
 # User tools
 export PATH=${PATH}:$HOME/libs
@@ -63,24 +61,32 @@ alias gupload="./gradlew uploadArchive"
 alias gbuild="./gradlew clean && ./gradlew assembleDebug && ./gradlew installDebug"
 alias gstop="./gradlew --stop"
 
-function show_denpendencies(){
-	./gradlew -q $1:dependencies 
-}
 # gdeps {module_name}
-alias gdeps="show_denpendencies"
+function gdeps(){
+	./gradlew -q $1:dependencies
+}
 
-# adb shell 
+# adb shell
 alias logcate="noglob adb logcat AndroidRuntime:E *:S"
 alias showtask="adb shell dumpsys activity activities | sed -En -e '/Stack #/p' -e '/Running activities/,/Run #0/p'"
 
-# system
-function free_m(){
-	vm_stat | perl -ne '/page size of (\d+)/ and $size=$1; /Pages\s+([^:]+)[^\d]+(\d+)/ and printf("%-16s % 16.2f Mi\n", "$1:", $2 * $size / 1048576);'
+function adbpackage(){
+	adb shell pm list package | grep $1 |sort| head -1| tr -d '\r'| sed 's/package://g'
 }
-alias free="free_m"
 
+function adbapkpath(){
+	PACKAGE_PATH=$(adbpackage $1)
+	adb shell pm path "${PACKAGE_PATH}"| tr -d '\r'| sed 's/package://g'
+}
+
+function adbstart(){
+	adb shell am start -n "$1"
+}
+
+# system
+
+alias proxyon="export http_proxy='http://127.0.0.1:1087';export https_proxy='http://127.0.0.1:1087'"
+alias proxyoff="export http_proxy='';export https_proxy=''"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export PATH=${PATH}:/Applications/Android\ Studio.app/Contents/gradle/gradle-3.2/bin

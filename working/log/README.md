@@ -1,4 +1,4 @@
-## install 
+## install
 
 ```
 pip install -r requirements.txt
@@ -9,14 +9,22 @@ pip install -r requirements.txt
 ```
 sudo chmod a+x glog.py
 sudo mv glog.py /usr/local/bin/glog.py
-cd [git目录下]
+cd [git dir]
 glog.py
 ```
 
-## 注意事项
-使用前注意备份 README.md 文件
+## git commit msg
 
+```
+feat: new feature
+fix: fix bug
+docs: docs update
+style: code format, style format
+refactor: refactor code, without new feature or bug fix
+test: add test code
+chore: bootstrap code or build files update
+trivial: fix typo...etc
+```
 
-
-
-
+## warning
+please back up your `README.md` file first!!!

@@ -5,8 +5,6 @@ function say {
 	echo -e "\033[32m$1\033[0m\n"
 }
 
-# kcptun_dir=`find ${HOME}/Downloads/ -name 'kcptun-darwin-amd64-*' -depth 1 -type d | sort -r | head -1`
-
 kcptun_client=$HOME/.kcptun/client_darwin_amd64
 say $kcptun_client
 

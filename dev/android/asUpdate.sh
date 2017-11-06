@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 ANDROID_STUDIO_PREFERENCES_PATH=`find ${HOME}/Library/Preferences -name 'AndroidStudio*' -depth 1 | sort -r | head -1`
 VMOPTIONS_PATH="${ANDROID_STUDIO_PREFERENCES_PATH}/studio.vmoptions"
 
@@ -18,17 +18,18 @@ echo "Adding android $as_gradle_version to path"
 echo "------------------------------------------------------------"
 echo 'export PATH=${PATH}:/Applications/Android\ Studio.app/Contents/gradle/'"$as_gradle_version"'/bin'  >> ~/.zshrc
 tail -n 1 ~/.zshrc
+
+source ~/.zshrc
+chmod a+x /Applications/Android\ Studio.app/Contents/gradle/"$as_gradle_version"/bin/gradle
 gradle -v
 echo "------------------------------------------------------------"
 echo "\n\n"
 
 echo "------------------------------------------------------------"
-echo "Remove author from new files"
+echo "Remove author from new files AS template"
 echo "------------------------------------------------------------"
 
-ANDROID_STUDIO_PREFERENCES_PATH=`find ${HOME}/Library/Preferences -name 'AndroidStudio*' -depth 1 | sort -r | head -1`
 FILE_HEADER_PATH="${ANDROID_STUDIO_PREFERENCES_PATH}/fileTemplates/includes/File Header.java"
-echo $ANDROID_STUDIO_PREFERENCES_PATH
 if [ -f "$FILE_HEADER_PATH" ]; then
 	cat /dev/null > $FILE_HEADER_PATH
 fi
