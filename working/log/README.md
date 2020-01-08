@@ -27,4 +27,4 @@ trivial: fix typo...etc
 ```
 
 ## warning
-please back up your `README.md` file first!!!
+please back up your `changlog.md` file first!!!

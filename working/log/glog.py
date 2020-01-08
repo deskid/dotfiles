@@ -16,8 +16,10 @@ tags = release_tag.splitlines()
 
 release_logs = []
 for i in range(0, len(tags) - 1):
-    tag_time_commond = 'git log -1 --pretty=format:"%ad" --date=short --no-merges ' + '"' + tags[i + 1] + '"'
-    tag_time = subprocess.check_output(tag_time_commond, shell=True).splitlines()[0]
+    tag_time_commond = 'git log -1 --pretty=format:"%ad" --date=short --no-merges ' + \
+        '"' + tags[i + 1] + '"'
+    tag_time = subprocess.check_output(
+        tag_time_commond, shell=True).splitlines()[0]
     release_log = {'tag_name': tags[i][:tags[i].index('-')],
                    'tag_link': tags[i],
                    'tag_time': tag_time,
@@ -31,7 +33,8 @@ for i in range(0, len(tags) - 1):
                    'docs': []
                    }
 
-    show_log_commond = 'git log --pretty=format:"%s" --no-merges ' + '"' + tags[i + 1] + '".."' + tags[i] + '"'
+    show_log_commond = 'git log --pretty=format:"%s" --no-merges ' + \
+        '"' + tags[i + 1] + '".."' + tags[i] + '"'
 
     log_result = subprocess.check_output(show_log_commond, shell=True)
     logs = log_result.splitlines()
@@ -68,11 +71,11 @@ for i in range(0, len(tags) - 1):
 
 template_path = 'changelog.md'
 ROOT_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), os.pardir))
-with open(os.path.join(ROOT_PATH, template_path), 'r') as mail_template:
-    content = mail_template.read().decode('utf-8')
+with open(os.path.join(ROOT_PATH, template_path), 'r') as log_template:
+    content = log_template.read().decode('utf-8')
     template = Template(content)
     result = template.render(release_logs=release_logs)
-    with open('README.md', 'w') as log_file:
+    with open('changlog.md', 'w') as log_file:
         log_file.write(result.encode('utf-8'))
         log_file.flush()
 print 'README.md added'

@@ -8,13 +8,14 @@ from jinja2 import Template
 DATE = str(date.today())
 FILE_NAME = DATE + '.md'
 ROOT_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), os.pardir))
-WRITE_PATH = os.path.join('~/Documents/日报', FILE_NAME)
+WRITE_PATH = os.path.join('~/Dropbox/notes/日报', FILE_NAME)
 
 
 def notify(title, info_text):
     title = title.replace('"', '\'')
     info_text = info_text.replace('"', '\'')
-    cmd = """osascript -e 'display notification  "%s"  with title "%s" sound name "Funk.aiff"'""" % (info_text, title)
+    cmd = """osascript -e 'display notification  "%s"  with title "%s" sound name "Funk.aiff"'""" % (
+        info_text, title)
     subprocess.call(cmd, shell=True)
 
 
