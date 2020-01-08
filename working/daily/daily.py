@@ -1,4 +1,6 @@
+#!/usr/local/bin/python3
 # coding=utf-8
+
 import os
 import subprocess
 from datetime import date
@@ -8,7 +10,7 @@ from jinja2 import Template
 DATE = str(date.today())
 FILE_NAME = DATE + '.md'
 ROOT_PATH = os.path.abspath(os.path.join(os.path.abspath(__file__), os.pardir))
-WRITE_PATH = os.path.join('~/Dropbox/notes/日报', FILE_NAME)
+WRITE_PATH = os.path.join('./', FILE_NAME)
 
 
 def notify(title, info_text):
@@ -22,12 +24,12 @@ def notify(title, info_text):
 def render():
     template_path = os.path.join(ROOT_PATH, 'template', 'DailyReport.md')
     with open(template_path, 'r') as report_template:
-        content = report_template.read().decode('utf-8')
+        content = report_template.read()
         template = Template(content)
         result = template.render()
 
         with open(WRITE_PATH, 'w') as log_file:
-            log_file.write(result.encode('utf-8'))
+            log_file.write(result)
             log_file.flush()
 
 
