@@ -78,4 +78,4 @@ with open(os.path.join(ROOT_PATH, template_path), 'r') as log_template:
     with open('changlog.md', 'w') as log_file:
         log_file.write(result.encode('utf-8'))
         log_file.flush()
-print 'README.md added'
+print('README.md added')

@@ -33,4 +33,4 @@ def render():
 
 render()
 notify('日报已生成,开始工作吧', FILE_NAME)
-print '日报已生成'
+print('日报已生成')
